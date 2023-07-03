@@ -20,6 +20,8 @@ function deletarUsuario($id) {
     $sql = "DELETE FROM usuario WHERE id = $id";
     if ($conn->query($sql) === TRUE) {
         echo "Usuário deletado com sucesso.";
+        header("Location: index.php");
+        exit;
     } else {
         echo "Erro ao deletar o usuário: " . $conn->error;
     }

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         echo "Usuário cadastrado com sucesso!";
-        header("Location: index.php");
+        header("Location: login.php");
         exit;
     } else {
         echo "Erro ao cadastrar o usuário: " . $conn->error;

@@ -28,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO usuario (uuid, nome, cpf, email, senha, permissao, data_criacao, data_atualizacao, status) VALUES ('$uuid', '$nome', '$cpf', '$email', '$senha', '$permissoes', '$dataCriacao', '$dataAtualizacao', '$status')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Usuário cadastrado com sucesso!";
+        // Redireciona para a página index.php
+        header("Location: index.php");
+        exit;
     } else {
         echo "Erro ao cadastrar o usuário: " . $conn->error;
     }
@@ -58,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <header>
             <h1 class="total">Cadastrar novo usuário</h1>
         </header>
-        <form action="cadastrar.php" class="cadastro" method="POST">
+        <form action="cadastrar_novo.php" class="cadastro" method="POST">
             <div class="input">
                 <label for="input_nome">Nome:</label>
                 <input type="text" id="input_nome" name="nome" placeholder="Digite um nome">
