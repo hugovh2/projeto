@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $status = $_POST['status'];
-    $permissoes = implode(',', $_POST['permissao']); // Converte o array de permissões em uma string separada por vírgula
+    $permissoes = implode(',', $_POST['permissao']);
 
     // Conexão com o banco de dados
     $servername = "localhost";
@@ -49,10 +49,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 // Verifica as permissões do usuário logado
-$permissao_login = $_SESSION['permissao_login'] ?? false;
-$permissao_usuario_add = $_SESSION['permissao_usuario_add'] ?? false;
-$permissao_usuario_editar = $_SESSION['permissao_usuario_editar'] ?? false;
-$permissao_usuario_deletar = $_SESSION['permissao_usuario_deletar'] ?? false;
+// $permissao_login = $_SESSION['permissao_login'] ?? false;
+// $permissao_usuario_add = $_SESSION['permissao_usuario_add'] ?? false;
+// $permissao_usuario_editar = $_SESSION['permissao_usuario_editar'] ?? false;
+// $permissao_usuario_deletar = $_SESSION['permissao_usuario_deletar'] ?? false;
 
 // Conexão com o banco de dados
 $servername = "localhost";
