@@ -88,3 +88,7 @@
     color: #FFF;
     margin-top: 10px;
 }
+.cadastro-link a {
+    color: #4caf50;
+    text-decoration: none;
+}

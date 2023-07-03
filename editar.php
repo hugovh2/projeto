@@ -54,7 +54,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     </div>
                     <div class="input">
                         <label for="input_cpf">CPF:</label>
-                        <input type="text" id="input_cpf" name="cpf" placeholder="Digite um CPF" value="<?php echo $row['cpf']; ?>">
+                        <input type="text" id="input_cpf" name="cpf" placeholder="Digite um CPF" value="<?php echo formatarCPF($row['cpf']); ?>">
                     </div>
                     <div class="input">
                         <label for="input_email">E-mail:</label>
@@ -115,4 +115,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 $conn->close();
+
+// Função para formatar o CPF removendo os pontos e o traço
+function formatarCPF($cpf)
+{
+    $cpf = preg_replace('/[^0-9]/', '', $cpf); // Remove caracteres não numéricos
+    $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT); // Completa com zeros à esquerda até alcançar 11 dígitos
+    return substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2); // Formata o CPF com pontos e traço
+}
 ?>

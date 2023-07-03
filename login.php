@@ -17,8 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Falha na conexão com o banco de dados: " . $conn->connect_error);
     }
 
+    // Remove pontos e traço do CPF
+    $cpf = str_replace(array('.', '-'), '', $cpf);
+
     // Consulta o banco de dados para verificar o usuário e a senha
-    $sql = "SELECT * FROM usuario WHERE cpf = '$cpf' AND senha = '$senha'";
+    $sql = "SELECT * FROM usuario WHERE REPLACE(cpf, '.', '') = '$cpf' AND senha = '$senha'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -56,12 +59,6 @@ $row = $result->fetch_assoc();
 $totalUsuarios = $row['total'];
 
 $conn->close();
-
-// // Redireciona para a página de cadastro caso não haja usuários cadastrados ou as credenciais sejam inválidas
-// if ($totalUsuarios === 0 || isset($loginError)) {
-//     header("Location: novo_usuario.php");
-//     exit();
-// }
 ?>
 
 <!DOCTYPE html>

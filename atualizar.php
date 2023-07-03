@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = $_POST['status'];
     $permissao = implode(',', $_POST['permissao']);
 
-    // Remove os zeros à esquerda do CPF
-    $cpf = ltrim($cpf, '0');
+    // Remove os caracteres não numéricos do CPF
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
     // Atualiza os dados do usuário no banco de dados
     $sql = "UPDATE usuario SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha', status = '$status', permissao = '$permissao' WHERE id = $id";

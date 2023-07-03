@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
     $permissoes = implode(',', $_POST['permissao']); // Converte o array de permissões em uma string separada por vírgula
 
+    // Remova os pontos e traços do CPF
+    $cpf = preg_replace('/[\.-]/', '', $cpf);
+
     // Conexão com o banco de dados
     $servername = "localhost";
     $username = "root";
@@ -22,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insere os dados na tabela usuario
     $uuid = uniqid(); // Gera um UUID único para o usuário
+
+    // Define o fuso horário para o Brasil (ajuste de acordo com o seu fuso horário)
+    date_default_timezone_set('America/Sao_Paulo');
+    
     $dataCriacao = date("Y-m-d H:i:s");
     $dataAtualizacao = date("Y-m-d H:i:s");
 
